@@ -524,16 +524,18 @@ class Synth:
         width Reverb width value (0.0-100.0)
         level Reverb level value (0.0-1.0)
         """
-        set=0
-        if roomsize>=0:
-            set+=0b0001
-        if damping>=0:
-            set+=0b0010
-        if width>=0:
-            set+=0b0100
-        if level>=0:
-            set+=0b1000
-        return fluid_synth_set_reverb(self.synth, set, roomsize, damping, width, level)
+        # set=0
+        # if roomsize>=0:
+        #     set+=0b0001
+        # if damping>=0:
+        #     set+=0b0010
+        # if width>=0:
+        #     set+=0b0100
+        # if level>=0:
+        #     set+=0b1000
+        # return fluid_synth_set_reverb(self.synth, set, roomsize, damping, width, level)
+        return fluid_synth_set_reverb(self.synth, roomsize, damping, width, level)
+
     def set_chorus(self, nr=-1, level=-1.0, speed=-1.0, depth=-1.0, type=-1):
         """                                  
         nr Chorus voice count (0-99, CPU time consumption proportional to this value)
@@ -542,18 +544,19 @@ class Synth:
         depth_ms Chorus depth (max value depends on synth sample rate, 0.0-21.0 is safe for sample rate values up to 96KHz)
         type Chorus waveform type (0=sine, 1=triangle)
         """
-        set=0
-        if nr>=0:
-            set+=0b00001
-        if level>=0:
-            set+=0b00010
-        if speed>=0:
-            set+=0b00100
-        if depth>=0:
-            set+=0b01000
-        if type>=0:
-            set+=0b10000
-        return fluid_synth_set_chorus(self.synth, set, nr, level, speed, depth, type)
+        # set=0
+        # if nr>=0:
+        #     set+=0b00001
+        # if level>=0:
+        #     set+=0b00010
+        # if speed>=0:
+        #     set+=0b00100
+        # if depth>=0:
+        #     set+=0b01000
+        # if type>=0:
+        #     set+=0b10000
+        return fluid_synth_set_chorus(self.synth, nr, level, speed, depth, type)
+
     def get_reverb_roomsize(self):
         return fluid_synth_get_reverb_roomsize(self.synth)
     def get_reverb_damp(self):
